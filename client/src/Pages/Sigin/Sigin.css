@@ -1,0 +1,27 @@
+.sigin-conainer{
+    display: flex;
+    justify-content: center;
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,134,44,1) 35%, rgba(0,212,255,1) 100%);
+    height: 710px;
+}
+
+.s2{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 400px;
+    height: max-content;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 90px;
+}
+
+
+
+.s2-button{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
