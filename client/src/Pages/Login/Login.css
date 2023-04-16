@@ -1,0 +1,26 @@
+.login-container{
+   
+    display: flex;
+    justify-content: center;
+    height: 710px;
+    width: 100%;
+    background: linear-gradient(to right, #fffbd5, #b20a2c);;
+    
+}
+
+.l1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: max-content;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 150px;
+    
+}
+
+.l2{
+    width: 400px;
+}

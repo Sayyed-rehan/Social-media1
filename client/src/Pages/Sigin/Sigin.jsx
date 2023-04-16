@@ -3,8 +3,10 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import "./Sigin.css";
 import swal from "sweetalert"
 import axios from 'axios'
+import {useNavigate}from 'react-router-dom'
 
 const Sigin = () => {
+  const Nav = useNavigate()
 
     const [user, setuser] = useState({
         name:"", email:"", phone:"", password:""
@@ -30,6 +32,7 @@ const Sigin = () => {
             button: "ok",
           });
         setuser({name:"", email:"", phone:"", password:""})
+        Nav("/login")
     }
 
   return (
