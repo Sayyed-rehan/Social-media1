@@ -1,0 +1,35 @@
+.feed-container{
+    /* background-color: aqua; */
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-left: 5px;
+    background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+    padding-bottom: 20px;
+}
+
+
+.feed-container1{
+ 
+}
+
+
+
+
+.feed1{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: antiquewhite; */
+    /* margin-top: 10px; */
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.feed2{
+
+}
+
+.feed3{
+    /* background-color: aqua; */
+}

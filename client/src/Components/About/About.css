@@ -1,0 +1,28 @@
+.about-container {
+  /* background-color: aqua; */
+  margin-top: 20px;
+}
+
+.about-box {
+  background: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+
+  border-radius: 40px;
+  margin-right: 10px;
+}
+
+.about1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.weather{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 20px;
+}

@@ -24,6 +24,7 @@ const Login = () => {
             password:user.password
         })
         console.log(responce.data);
+        
         if(responce.data.success){
             await swal({
                 title: "Logined",
@@ -31,8 +32,9 @@ const Login = () => {
                 icon: "success",
                 button: "ok",
               });
+              localStorage.setItem("currentUser", JSON.stringify(responce.data.data))
               setuser({email:"", password:""})
-              nav("/")
+              window.location.href = "/"
         }else{
             await swal({
                 title: "invalid",
