@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, TextField, Typography } from "@mui/material";
+import React, { useCallback, useState } from "react";
+import { Box,  Divider, TextField,  } from "@mui/material";
 import axios from "axios";
 import "./Feed.css";
-import addpost from "./../../images/addpost.png"
-import update from "./../../images/update.png"
-import deleting from "./../../images/deleting.png"
 import { useEffect } from "react";
 import PostCardItems from "../PostCardItems/PostCardItems";
 
@@ -12,16 +9,23 @@ const Feed = () => {
 
   
   const [data, setdata] = useState([])
-  
+
   const fetchPost = async()=>{
     const res = await axios.get("http://localhost:5000/allPost")
-    console.log("post data",res.data.data);  
-    setdata(res.data.data)
+    .then((responce)=>{
+      setdata(responce.data.data)
+    })
+    
   }
   
-  useEffect(()=>{fetchPost()},[data])
-
-
+  useEffect(()=>{
+    fetchPost()
+  },[])
+  
+ 
+console.log(data);
+  
+  
 
 
 
@@ -33,19 +37,15 @@ const Feed = () => {
           sx={{width:"350px"}}  />
         </Box>
           <Divider color='white'/>
-          <Box className="feed2" >
-          <img src={addpost}/>
-          <img src={deleting}/>
-          <img src={update}/>
-
-          </Box>
           <Divider color='white'/>
+
           <Box className="feed3">
            {data.map((x,i)=>(
-            <PostCardItems 
+            <PostCardItems key={x._id}
             heading={x.heading}
              desc={x.desc}
              img={x.img} 
+             _id={x._id}
             />
            ))}
           </Box>

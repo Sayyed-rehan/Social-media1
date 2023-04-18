@@ -87,7 +87,7 @@ app.post("/createPost", (req,res)=>{
     })
 })
 
-//deletPost
+//deletPost by heading
 app.delete("/deletPost", async(req,res)=>{
 
     const{heading} = req.query
@@ -99,10 +99,21 @@ app.delete("/deletPost", async(req,res)=>{
     })
 })
 
+//deletePostById
+app.delete("/deletePostById", async(req,res)=>{
+    const {_id} = req.query
+    const data = await Post.findByIdAndDelete(_id)
+    res.json({
+        success:true,
+        mess:"post deleted",
+        data:data
+    })
+})
+
 //updatePost
 app.patch("/updatePost", async(req,res)=>{
 
-    const data = await Post.findByIdAndUpdate(req.query,req.body, {new:true})
+    const data = await Post.findByIdAndUpdate(req.query,req.body)
     res.json({
         success:true,
         mess:"post updated",
