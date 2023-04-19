@@ -1,10 +1,12 @@
 .feed-container{
     /* background-color: aqua; */
-    border-radius: 20px;
+    border-radius: 30px;
     margin-right: 10px;
     margin-left: 5px;
     background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+    /* background-image:linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114)); */
     padding-bottom: 20px;
+    box-shadow: 10px 10px 5px lightsteelblue;
 }
 
 
@@ -24,6 +26,7 @@
     /* margin-top: 10px; */
     padding-top: 20px;
     padding-bottom: 10px;
+    gap: 10px;
 }
 
 .feed2{

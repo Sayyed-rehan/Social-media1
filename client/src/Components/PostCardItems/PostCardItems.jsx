@@ -1,21 +1,25 @@
-import React from 'react'
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, IconButton, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { Avatar,  Card, CardActions, CardContent, CardHeader, CardMedia, Divider, IconButton, Typography } from '@mui/material'
 import { currentUser } from '../../utils/currentUser'
-import delete1 from "./../../images/delete1.png"
+
 import axios from 'axios'
 import UpdateModal from '../../Modals/UpdateModal'
+import deletes from "./../../images/deletes.png"
 
+import "./PostCardItems.css"
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 
 
 
 const PostCardItems = (props) => {
+  const [liked, setliked] = useState(false)
 
   
 
   const handleDelete =async(x)=>{
     await swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once deleted, you will not be able to recover this post!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -25,7 +29,7 @@ const PostCardItems = (props) => {
         const res =  axios.delete(`http://localhost:5000/deletePostById/?_id=${x}`)
         console.log(res.data);
 
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("Poof! Your post has been deleted!", {
           icon: "success",
         });
       } else {
@@ -51,19 +55,17 @@ console.log('Postcard',props._id);
             <CardContent>
                 <Typography variant="body2" color="text.secondary">{props.desc}</Typography>
             </CardContent>
+            <Divider/>
 
-            <CardActions >
-            <Button size="small" color="primary">Share</Button>
-            <IconButton color='error'>
-            <img src='https://img.icons8.com/ios/256/like.png' width='20px' />
-            <img src={delete1} alt='delete' width='40px' onClick={()=>handleDelete(props._id)}  />
+            <CardActions sx={{display:"flex", justifyContent:"space-evenly", cursor:"pointer"}}>
+            <ThumbUpAltOutlinedIcon fontSize='large' onClick={()=>setliked(true)} color={liked?'success':'inherit'}/>
+            <img src={deletes} alt='delete' width='35px' onClick={()=>handleDelete(props._id)}  />
             <UpdateModal  
             heading={props.heading}
              desc={props.desc}
              img={props.img} 
             id={props._id}/>
 
-            </IconButton>
             </CardActions>
         </Card>
     </div>

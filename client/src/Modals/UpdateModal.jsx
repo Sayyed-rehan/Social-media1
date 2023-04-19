@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Box, Drawer, IconButton, List, Typography, Modal, TextField, Button } from "@mui/material";
-import update1  from "./../images/update1.png";
+import { Box, IconButton,  Typography, Modal, TextField, Button, Stack } from "@mui/material";
 import axios from 'axios'
+import swal from 'sweetalert'
+import edit from "./../images/edit.png"
 
 const UpdateModal = (props) => {
   const [isDrawerOpen, setisDrawerOpen] = useState(false);
@@ -14,18 +15,38 @@ const UpdateModal = (props) => {
         setinputs({...inputs,[e.target.name]:e.target.value})
     }
 
-  const style = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper',
-  border: '2px solid #000', boxShadow: 24, p: 4,};
+  const style = { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400,
+   boxShadow: 24, p: 4, borderRadius:4, bgcolor:"#fffde7"};
 
 
     const handleUpdate = async(x)=>{
-        const res =await axios.patch(`http://localhost:5000/updatePost?_id=${x}`,{
-          heading:inputs.heading,
-          desc:inputs.desc,
-          img:inputs.image
-        })
-        console.log(res.data);
-        // location.reload()
+
+      await swal({
+        title: "Are you sure?",
+        text: "Once updated, you will not be able to recover this previous post!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          const res = axios.patch(`http://localhost:5000/updatePost?_id=${x}`,{
+            heading:inputs.heading,
+            desc:inputs.desc,
+            img:inputs.image
+          })
+          console.log(res.data);
+          
+          swal("Poof! Your post   has been updated!", {
+            icon: "success",
+          });
+          location.reload()
+        } else {
+          swal("Your post is safe!");
+        }
+        setisDrawerOpen(false)
+      });
+
     }
   
     console.log(props.heading);
@@ -33,7 +54,7 @@ const UpdateModal = (props) => {
     <>
       <IconButton size="large" edge="start" color="black"
         onClick={() => setisDrawerOpen(true)}>
-        <img src={update1} />
+        <img src={edit} width='35px'/>
       </IconButton>
       <Modal open={isDrawerOpen} onClose={() => setisDrawerOpen(false)} aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
@@ -41,12 +62,18 @@ const UpdateModal = (props) => {
 
 
 
-        <Box  sx={style}>
-        <Typography>Update</Typography>
+        <Box  sx={style} boxShadow={12} >
+        <Typography variant='h4' sx={{display:"flex", justifyContent:"center"}}>Edit post</Typography>
+        <Stack spacing={4} sx={{pt:2, pb:2}}>
         <TextField variant="outlined" label='Heading' name="heading" value={inputs.heading} onChange={handleInput} type='heading'/>
-        <TextField variant="outlined" label='Desc' name="desc" value={inputs.desc} onChange={handleInput} type='desc'/>
-        <TextField variant="outlined" label='Images' name="image" value={inputs.image} onChange={handleInput} type='img'/>
-        <Button onClick={()=>handleUpdate(props.id)}>Update</Button>
+        <TextField variant="outlined" label='Desc' name="desc" value={inputs.desc} onChange={handleInput} type='desc' multiline/>
+        <TextField variant="outlined" label='Images URL' name="image" value={inputs.image} onChange={handleInput} type='img' multiline/>
+        </Stack>
+
+        <Box sx={{display:"flex", justifyContent:"center"}}>
+
+        <Button onClick={()=>handleUpdate(props.id)} variant='contained'> Update</Button>
+        </Box>
 
         </Box>
       </Modal>
