@@ -20,7 +20,7 @@ const About = () => {
 async function loadData() {
     // let city = "ahmednagar"
     var APIKEY = "e9e36cf5a2bbf404c59aeeb1f4b710e0"
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city}&appid=${APIKEY}`;
     const response = await axios.get(url);
 
     //fetching temp
@@ -76,7 +76,7 @@ async function loadData() {
       <Typography variant='h5' fontWeight='bold'>Weather</Typography>
         <Typography sx={{display:"flex", alignItems:"center", gap:"10px"}}>
         <img src='https://img.icons8.com/color/1x/marker.png' width='20px'/>
-        {city}</Typography>
+        {currentUser.city}</Typography>
         <Typography sx={{display:"flex", alignItems:"center", gap:"10px"}}>
         <img src='https://img.icons8.com/arcade/1x/temperature.png'width='30px'/>
         {temp}</Typography>

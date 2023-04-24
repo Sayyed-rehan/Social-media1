@@ -40,7 +40,7 @@ const PostCardItems = (props) => {
 
 
 
-console.log('Postcard',props._id);
+// console.log('Postcard',props._id);
 
 
   return (
@@ -51,7 +51,7 @@ console.log('Postcard',props._id);
             title={props.heading}
              subheader="September 14, 2016"
             />
-            <CardMedia image={props.img}  component="img"  sx={{ height: 300 }}/>
+            <CardMedia image={props.img}  component="img"  sx={{ height: 250 }}/>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">{props.desc}</Typography>
             </CardContent>

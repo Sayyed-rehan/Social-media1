@@ -12,13 +12,14 @@ app.use(cors())
 
 //create
 app.post("/sigin", async(req,res)=>{
-    const {name,email,phone,password,role} = req.body;
+    const {name,email,phone,password,city,role} = req.body;
     const hasspass = await  bycrypt.hash(password, 12)
 
     const empltyFiled = [];
     if(!name) empltyFiled.push("name")
     if(!email) empltyFiled.push("email")
     if(!phone) empltyFiled.push("phone")
+    if(!city) empltyFiled.push("city")
     if(!hasspass) empltyFiled.push("password")
 
     if(empltyFiled.length>0){
@@ -28,7 +29,7 @@ app.post("/sigin", async(req,res)=>{
         })
     }
 
-    const data = new User({name, email, phone, password:hasspass, role})
+    const data = new User({name, email, phone, password:hasspass, city ,role})
     await data.save();
 
     res.json({
@@ -75,6 +76,20 @@ app.get("/allPost", async(req,res)=>{
     })
 })
 
+//get post by heading
+app.get("/byheading", async(req,res)=>{
+    
+    const {heading} = req.query
+    const data = await Post.find({heading:{$regex: heading, $options:"i"}})
+
+    res.json({
+        success:true,
+        mess:"post fetch by heading",
+        data:data
+    })
+})
+
+
 //createPost
 app.post("/createPost", (req,res)=>{
 
@@ -120,5 +135,19 @@ app.patch("/updatePost", async(req,res)=>{
         data:data
     })
 })
+
+//get User by City
+app.get("/getUserbyCity", async(req,res)=>{
+    
+    const {city} = req.query
+    const data = await User.find({city:{$regex: city, $options:"i"}})
+
+    res.json({
+        success:true,
+        mess:"post fetch by heading",
+        data:data
+    })
+})
+
 
 app.listen(5000, console.log('server started at 5000'))

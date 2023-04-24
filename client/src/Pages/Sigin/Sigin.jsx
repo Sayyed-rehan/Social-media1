@@ -9,7 +9,7 @@ const Sigin = () => {
   const Nav = useNavigate()
 
     const [user, setuser] = useState({
-        name:"", email:"", phone:"", password:""
+        name:"", email:"", phone:"", city:"", password:""
     })
 
     const handleInput=(e)=>{
@@ -22,6 +22,7 @@ const Sigin = () => {
             name:user.name,
             phone:user.phone,
             email:user.email,
+            city:user.city,
             password:user.password
         })
         console.log(responce.data);
@@ -44,6 +45,7 @@ const Sigin = () => {
           <TextField label="Name"   required variant="outlined" name="name" value={user.name} onChange={handleInput}/>
           <TextField label="Email"  required type={"email"} variant="outlined" name="email" value={user.email} onChange={handleInput}/>
           <TextField label="Phone"  required type={"phone"} variant="outlined" name="phone" value={user.phone} onChange={handleInput}/>
+          <TextField label="City"  required type={"city"} variant="outlined" name="city" value={user.city} onChange={handleInput}/>
           <TextField label="Password"  required type={"password"} variant="outlined" name="password" value={user.password} onChange={handleInput}/>
         </Stack>
         <Box className='s2-button'>

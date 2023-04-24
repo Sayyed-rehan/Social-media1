@@ -1,0 +1,25 @@
+.contact-container {
+  position: fixed;
+}
+
+.c1 {
+  /* background-color: aqua; */
+  border-radius: 30px;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding-top: 10px;
+  /* background: linear-gradient(to right, #fffbd5, #b20a2c);; */
+  background-image: linear-gradient(to right, #c6ffdd, #fbd786, #ef9a9a);
+  /* background-image:linear-gradient( 109.6deg, rgba(156,252,248,1) 11.2%, rgba(110,123,251,1) 91.1% ); */
+}
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,900&display=swap");
+.c1 h5 {
+  display: flex;
+  justify-content: center;
+}
+.c11 {
+  padding-bottom: 10px;
+}

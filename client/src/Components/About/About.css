@@ -1,13 +1,15 @@
 .about-container {
-  /* background-color: aqua; */
   margin-top: 20px;
-}
 
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,900&display=swap');
 .about-box {
   background: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
 
   border-radius: 40px;
   margin-right: 10px;
+  position: fixed;
+  width: 370px;
 }
 
 .about1 {
@@ -24,5 +26,5 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
-    padding-top: 20px;
+    padding-top: 0px;
 }

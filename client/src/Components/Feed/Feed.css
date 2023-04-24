@@ -11,7 +11,8 @@
 
 
 .feed-container1{
- 
+
+    
 }
 
 
@@ -27,6 +28,9 @@
     padding-top: 20px;
     padding-bottom: 10px;
     gap: 10px;
+    /* position: sticky; */
+    /* position: -webkit-sticky; */
+    /* top: 10px required */
 }
 
 .feed2{

@@ -35,7 +35,7 @@ const UpdateModal = (props) => {
             desc:inputs.desc,
             img:inputs.image
           })
-          console.log(res.data);
+          // console.log(res.data);
           
           swal("Poof! Your post   has been updated!", {
             icon: "success",
@@ -49,7 +49,7 @@ const UpdateModal = (props) => {
 
     }
   
-    console.log(props.heading);
+    // console.log(props.heading);
   return (
     <>
       <IconButton size="large" edge="start" color="black"

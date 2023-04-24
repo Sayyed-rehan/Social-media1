@@ -15,24 +15,24 @@ const Feed = () => {
 
   const fetchPost = async()=>{
     const res = await axios.get("http://localhost:5000/allPost")
-    .then((responce)=>{
-      setdata(responce.data.data)
-    })
+    setdata(res.data.data)
     
   }
   
-  useEffect(()=>{
-    fetchPost()
-  },[data])
 
-  
- 
-// console.log(data);
+const fetchSerachPost = async()=>{
+  const res = await axios.get(`http://localhost:5000/byheading?heading=${search}`)
+  console.log(res.data.data);
+  setdata(res.data.data)
+}
 
-// const fetchSerachPost = ()=>{
-//   const res = axios.get('')
-// }
-  
+useEffect(() => {
+  if (search.length > 0) {
+    fetchSerachPost();
+  } else {
+    fetchPost();
+  }
+}, [search]);
   
 
 
