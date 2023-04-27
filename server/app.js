@@ -1,5 +1,8 @@
+const PORT = process.env.PORT || 5000
+const dotenv= require('dotenv');
 const express = require('express')
 const app  = express()
+dotenv.config();
 require("./db/connect")
 const bycrypt = require("bcryptjs")
 const User = require("./models/userSchema")
@@ -149,5 +152,17 @@ app.get("/getUserbyCity", async(req,res)=>{
     })
 })
 
+// get User By ID
+app.get("/getUserByID", async(req,res)=>{
 
-app.listen(5000, console.log('server started at 5000'))
+    const {_id} = req.query
+    const data = await User.findOne({_id:_id})
+    res.json({
+        success:true,
+        mess:"User by Id",
+        data:data
+    })
+})
+
+
+app.listen(5000, console.log(`server started at ${PORT}`))

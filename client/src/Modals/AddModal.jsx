@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  IconButton,
-  Modal,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, IconButton, Modal, Stack, TextField, Typography,} from "@mui/material";
 import axios from "axios";
 import swal from "sweetalert";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import { currentUser } from "../utils/currentUser";
+import {useDispatch, useSelector}from "react-redux"
+import {setSelectedUser} from "./../redux/counterSlice"
+import addPosts from "./../images/addPosts.png"
+
 
 const AddModal = () => {
   const [isModalOpen, setisModalOpen] = useState(false);
+  const [UserID, setUserID] = useState("")
+  const dispatch = useDispatch();
 
+
+ 
   const [form, setform] = useState({
     heading: "",
     desc: "",
@@ -42,18 +42,28 @@ const AddModal = () => {
       heading: form.heading,
       desc: form.desc,
       img: form.Images,
+      postedBy:(currentUser._id)
     });
-    setisModalOpen(false)
     
+    const responce = await axios.get(`http://localhost:5000/getUserByID?_id=${currentUser._id}`)
+    console.log('id details',responce.data.data.name);
+    setUserID(responce.data.data.name)
+    dispatch(setSelectedUser(responce.data.data.name))
+    setisModalOpen(false)
+
+
     swal({
         title: "Post Added",
                 text: "You are ready to GO",
-                icon: "success",
-                button: "ok",
+                icon: "success"
               })
-    setform({heading:"", desc:"", Images:""})
-    console.log(res.data.data);
+              setform({heading:"", desc:"", Images:""})
+              console.log(res.data.data);
+              location.reload()
   };
+
+
+
 
   return (
     <>
@@ -63,8 +73,8 @@ const AddModal = () => {
         onClick={() => setisModalOpen(true)}
       >
         <img
-          src="https://img.icons8.com/external-bearicons-glyph-bearicons/256/external-Post-social-media-bearicons-glyph-bearicons.png"
-          width="40"
+          src={addPosts}
+          width="32"
         />
       </IconButton>
 

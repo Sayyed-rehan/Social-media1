@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Avatar, AvatarGroup, Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, Stack, Tooltip, Typography,} from "@mui/material";
+import { Avatar, AvatarGroup, Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, SpeedDial, Stack, Tooltip, Typography,} from "@mui/material";
 import { useEffect } from "react";
 import "./Contact.css"
 import trend from "./../../images/trend.png"
@@ -9,6 +9,11 @@ import email from "./../../images/email.png"
 import call from "./../../images/call.png"
 import location from "./../../images/location.png"
 import {currentUser} from "./../../utils/currentUser"
+import ConnetModal from "../../Modals/ConnetModal";
+const API = import.meta.env.VITE_SOME_KEY
+
+
+
 
 
 
@@ -22,20 +27,16 @@ const Contact = () => {
   const [soccerData, setsoccerData] = useState([]);
   const [DailogOpen, setDailogOpen] = useState(false)
   const [UsercityData, setUsercityData] = useState([])
+  const [UserById, setUserById] = useState([])
 
-  const handleClickOpen=()=>{
-    setDailogOpen(true)
-  }
+// console.log("api",import.meta.env.VITE_SOME_KEY);
 
   const getData = async () => {
     const res = await axios.get(
       "https://free-football-soccer-videos.p.rapidapi.com/",
       {
-        headers: {
-          "X-RapidAPI-Key":
-            "c045737265msh1b8b44c37f9d687p121d2bjsn6246cf5dbcf5",
-          "X-RapidAPI-Host": "free-football-soccer-videos.p.rapidapi.com",
-        },
+        headers: {"X-RapidAPI-Key": (import.meta.env.VITE_SOME_KEY),
+      "X-RapidAPI-Host": "free-football-soccer-videos.p.rapidapi.com"},
       }
     );
     setsoccerData(res.data);
@@ -47,14 +48,21 @@ const Contact = () => {
     setUsercityData(res.data.data)
   }
 
-  console.log(UsercityData);
+  // const fetchUserByID = async(x)=>{
+  //   setDailogOpen(true)
+  //   const res = await axios.get(`http://localhost:5000/getUserByID?_id=${x}`)
+  //   console.log("fetchUserByID",res.data.data);
+  //   setUserById(res.data.data)
+  // }
+
+
 
   useEffect(() => {
     getData();
-    fetchDataByCity()
+    // fetchDataByCity()
   }, []);
 
-  const longText = currentUser;
+ 
 
 
   return (
@@ -67,7 +75,7 @@ const Contact = () => {
         {soccerData.map((x,i)=>{
           if(i<4){
             return(
-              <Box className='c11'>
+              <Box className='c11' key={i}>
                 <ListItemIcon sx={{display:"flex", justifyContent:"center"}}>
                   <img src={x.thumbnail} width='70'/>
                 </ListItemIcon>
@@ -84,22 +92,10 @@ const Contact = () => {
         })}
       </List>
     </Box>
-    {/* <Box className="c2">
-    <AvatarGroup  max={5}>
-      {UsercityData.map((x,i)=>(
-        <Box>
-          <Avatar onClick={handleClickOpen}>{x.name.split("",1)}</Avatar>
-          <Dialog open={DailogOpen} onClose={()=>setDailogOpen(false)} selectedValue={UsercityData}>
-            <DialogTitle>Profile</DialogTitle>
-            <DialogContent sx={{display:"flex", alignItems:"center", gap:"10px"}}><img src={person} width='20'/>{x.name}</DialogContent>
-            <DialogContent sx={{display:"flex", alignItems:"center", gap:"10px"}}><img src={email} width='20'/>{x.email}</DialogContent>
-            <DialogContent sx={{display:"flex", alignItems:"center", gap:"10px"}}><img src={call} width='20'/>{x.phone}</DialogContent>
-            <DialogContent sx={{display:"flex", alignItems:"center", gap:"10px"}}><img src={location} width='20'/>{x.city}</DialogContent>
-          </Dialog>
-        </Box>
-      ))}
-    </AvatarGroup>
-    </Box> */}
+    <Box className="c2">
+    {/* <ConnetModal/> */}
+
+    </Box>
     </Box>
     </div>
   );

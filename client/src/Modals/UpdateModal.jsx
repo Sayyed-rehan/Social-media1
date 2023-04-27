@@ -3,6 +3,8 @@ import { Box, IconButton,  Typography, Modal, TextField, Button, Stack } from "@
 import axios from 'axios'
 import swal from 'sweetalert'
 import edit from "./../images/edit.png"
+import { currentUser } from "../utils/currentUser";
+import disableedit from "./../images/disableedit.jpg"
 
 const UpdateModal = (props) => {
   const [isDrawerOpen, setisDrawerOpen] = useState(false);
@@ -46,15 +48,26 @@ const UpdateModal = (props) => {
         }
         setisDrawerOpen(false)
       });
+    }
 
+    const hanldeDisableEdit=async()=>{
+      await swal({
+        title: "Cannot edit this post",
+        icon: "error",
+        button: "ok",
+      });
+      setisDrawerOpen(false)
     }
   
     // console.log(props.heading);
   return (
     <>
       <IconButton size="large" edge="start" color="black"
-        onClick={() => setisDrawerOpen(true)}>
-        <img src={edit} width='35px'/>
+        onClick={currentUser._id==props.postedBy? () => setisDrawerOpen(true):() => hanldeDisableEdit()}>
+
+      <img src={edit} width='35px'/>
+       {/* {currentUser._id==props.postedBy? 
+       :<img src={disableedit} width='55px' onClick={hanldeDisableEdit}/>} */}
       </IconButton>
       <Modal open={isDrawerOpen} onClose={() => setisDrawerOpen(false)} aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">

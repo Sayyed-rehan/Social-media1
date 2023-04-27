@@ -5,6 +5,7 @@ import "./Feed.css";
 import { useEffect } from "react";
 import PostCardItems from "../PostCardItems/PostCardItems";
 import AddModal from "../../Modals/addModal";
+import ConnetModal from "../../Modals/ConnetModal"
 
 
 const Feed = () => {
@@ -26,6 +27,10 @@ const fetchSerachPost = async()=>{
   setdata(res.data.data)
 }
 
+
+
+
+
 useEffect(() => {
   if (search.length > 0) {
     fetchSerachPost();
@@ -46,6 +51,7 @@ useEffect(() => {
             <Box>
         <AddModal/>
             </Box>
+        <ConnetModal/>
         </Box>
 
           <Divider color='white'/>
@@ -57,6 +63,8 @@ useEffect(() => {
              desc={x.desc}
              img={x.img} 
              _id={x._id}
+             postedBy={x.postedBy?x.postedBy:"643bac045f063fea1e301130"}
+             createdAt={x.createdAt}
             />
            ))}
           </Box>

@@ -20,7 +20,7 @@ const About = () => {
 async function loadData() {
     // let city = "ahmednagar"
     var APIKEY = "e9e36cf5a2bbf404c59aeeb1f4b710e0"
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city}&appid=${APIKEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city?currentUser.city:"Ahmednagar"}&appid=${APIKEY}`;
     const response = await axios.get(url);
 
     //fetching temp
@@ -51,13 +51,13 @@ async function loadData() {
     {currentUser?
     <Box className="about-box" boxShadow={12}>
 
-      <Typography variant='h3' gutterBottom  sx={{display:"flex", alignItems:"center", justifyContent:"center", pt:"10px"}}>About</Typography>
+      <Typography variant='h3'  gutterBottom  sx={{display:"flex", alignItems:"center", justifyContent:"center", pt:"10px"}}>Profile</Typography>
       <Divider variant="middle"  />
       <Box className="about1">
       <Avatar sx={{ width: 56, height: 56 , bgcolor:"green"}}>{currentUser.name.split("",1)}</Avatar>
       <Stack direction='row' sx={{display:"flex", alignItems:"center"}} spacing={1.5}>
         <img src='https://img.icons8.com/doodle/1x/name.png' width='30px'/>
-      <Typography variant='h4'>{currentUser.name}</Typography>
+      <Typography variant='h5' >{currentUser.name}</Typography>
       </Stack>
       <Stack direction='row' sx={{display:"flex", alignItems:"center"}} spacing={1.5}>
       <img src='https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/1x/
@@ -76,7 +76,7 @@ async function loadData() {
       <Typography variant='h5' fontWeight='bold'>Weather</Typography>
         <Typography sx={{display:"flex", alignItems:"center", gap:"10px"}}>
         <img src='https://img.icons8.com/color/1x/marker.png' width='20px'/>
-        {currentUser.city}</Typography>
+        {currentUser.city?currentUser.city:"Ahmednagar"}</Typography>
         <Typography sx={{display:"flex", alignItems:"center", gap:"10px"}}>
         <img src='https://img.icons8.com/arcade/1x/temperature.png'width='30px'/>
         {temp}</Typography>

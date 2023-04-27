@@ -4,11 +4,11 @@ const postSchema = mongoose.Schema({
     heading:String,
     desc:String,
     img:String,
-    userID:{
+    postedBy:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"USer"
+        ref:"User"
     }
-}, {timeStamp:true});
+},{timestamps: true});
 
 const Post  = mongoose.model("Post", postSchema);
 

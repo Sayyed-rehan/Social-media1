@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState , useContext} from 'react'
 import { Avatar,  Card, CardActions, CardContent, CardHeader, CardMedia, Divider, IconButton, Typography } from '@mui/material'
 import { currentUser } from '../../utils/currentUser'
-
 import axios from 'axios'
 import UpdateModal from '../../Modals/UpdateModal'
-import deletes from "./../../images/deletes.png"
-
 import "./PostCardItems.css"
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
+import { useSelector } from "react-redux";
+import { useEffect } from 'react'
+import bin from "./../../images/bin.png"
+import disablebin from "./../../images/disablebin.png"
+
 
 
 
 const PostCardItems = (props) => {
   const [liked, setliked] = useState(false)
+  const [UserID, setUserID] = useState("")
+  const mySelUser = useSelector((state) => state.users.selUser);
 
   
 
@@ -36,35 +40,59 @@ const PostCardItems = (props) => {
         swal("Your imaginary file is safe!");
       }
     });
+    location.reload()
   }
 
+console.log(props.createdAt);
 
 
-// console.log('Postcard',props._id);
+  const fetchDetailsByID = async()=>{
+    const res = await axios.get(`http://localhost:5000/getUserByID?_id=${props.postedBy}`)
+    console.log('id details',res.data.data._id);
+    setUserID(res.data.data.name)
+  }
+
+  const handlediableBin =async()=>{
+    await swal({
+      title: "Cannot delete others post",
+      icon: "error",
+      button: "ok",
+    });
+  }
+  
+useEffect(()=>{fetchDetailsByID()},[])
+
+
+
 
 
   return (
     <div>
         <Card sx={{ml:'10px', mr:"10px", mb:"10px"}}>
             <CardHeader 
-            avatar={<Avatar>{currentUser.name.split("",1)}</Avatar>}
+            avatar={<Avatar>{UserID.split("",1)}</Avatar>}
             title={props.heading}
              subheader="September 14, 2016"
             />
-            <CardMedia image={props.img}  component="img"  sx={{ height: 250 }}/>
+            <CardMedia image={props.img}  component="img"  sx={{ height: 270,  }}/>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">{props.desc}</Typography>
             </CardContent>
             <Divider/>
 
             <CardActions sx={{display:"flex", justifyContent:"space-evenly", cursor:"pointer"}}>
-            <ThumbUpAltOutlinedIcon fontSize='large' onClick={()=>setliked(true)} color={liked?'success':'inherit'}/>
-            <img src={deletes} alt='delete' width='35px' onClick={()=>handleDelete(props._id)}  />
+            <ThumbUpAltOutlinedIcon fontSize='large'  onClick={liked?()=>setliked(false):()=>setliked(true)} color={liked?'success':'inherit'}/>
+
+            {currentUser._id==props.postedBy? 
+            <img src={bin} alt='delete' width='35px' onClick={()=>handleDelete(props._id)}  />
+            :<img src={disablebin} width='35px' onClick={handlediableBin}/>}
             <UpdateModal  
             heading={props.heading}
              desc={props.desc}
              img={props.img} 
-            id={props._id}/>
+            id={props._id}
+            postedBy={props.postedBy}
+            />
 
             </CardActions>
         </Card>
