@@ -46,7 +46,7 @@ useEffect(() => {
     <div className="feed-container">
       <Box className="feed-container1" >
         <Box className="feed1">
-          <TextField variant="outlined" label="Serach posts here" fullWidth 
+          <TextField variant="outlined" label="Search posts here..." fullWidth 
           sx={{width:"350px", bgcolor:"white", borderRadius:"10px"}}  value={search} onChange={(e)=>setsearch(e.target.value)}  />
             <Box>
         <AddModal/>

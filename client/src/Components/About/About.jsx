@@ -97,7 +97,7 @@ async function loadData() {
       <Box className="weather">
       <Divider/>
 
-        <Typography variant='h5' fontWeight='bold' sx={{display:"flex",justifyContent:"center" ,alignItems:"center"}}>Recomended</Typography>
+        <Typography variant='h5' fontWeight='bold' sx={{display:"flex",justifyContent:"center" ,alignItems:"center"}}>Recommended</Typography>
         <Divider  variant="middle"/>
 
         {UsercityData && UsercityData.length>0  ? 

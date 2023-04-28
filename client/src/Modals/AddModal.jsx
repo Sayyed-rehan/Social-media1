@@ -45,7 +45,6 @@ const AddModal = () => {
     );
     console.log("id details", responce.data.data.name);
     setUserID(responce.data.data.name);
-    dispatch(setSelectedUser(responce.data.data.name));
     setisModalOpen(false);
 
     await swal({

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import "./Sigin.css";
 import swal from "sweetalert"
 import axios from 'axios'
 import {useNavigate}from 'react-router-dom'
+import { currentUser } from "../../utils/currentUser";
 
 const Sigin = () => {
   const Nav = useNavigate()
@@ -44,6 +45,16 @@ const Sigin = () => {
         
           setuser({name:"", email:"", phone:"", password:""})
     }
+
+    useEffect(async()=>{
+      if(currentUser){
+        await swal({
+          title:"you are logined",
+          icon:"info"
+        })
+        window.location.href='/'
+      }
+  },[])
 
   return (
     <div className="sigin-conainer">

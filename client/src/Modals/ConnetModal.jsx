@@ -43,8 +43,6 @@ const ConnetModal = () => {
                 <Box>
                 <Typography sx={{display:"flex", alignItems:"center", gap:"8px"}}><img src={person} width='20'/>{x.name}</Typography>
                 <Typography sx={{display:"flex", alignItems:"center", gap:"8px"}}><img src={email} width='20'/>{x.email}</Typography>
-                {/* <Typography sx={{display:"flex", alignItems:"center"}}><img src={call} width='20'/>{x.phone}</Typography> */}
-                {/* <Typography sx={{display:"flex", alignItems:"center"}}><img src={location} width='20'/>{x.city}</Typography> */}
                 <Button variant='contained' sx={{mt:"10px", mb:"10px"}}>Connect</Button>
                 <Divider/>
                 </Box>

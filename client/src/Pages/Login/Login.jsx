@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import "./Login.css"
 import swal from 'sweetalert'
 import {useNavigate}from 'react-router-dom'
+import {currentUser} from "./../../utils/currentUser"
+
 
 const Login = () => {
     const nav = useNavigate()
@@ -44,9 +46,20 @@ const Login = () => {
         }
     }
 
+  
     const handleRegister =()=>{
       nav("/sigin")
     }
+
+  useEffect(async()=>{
+    if(currentUser){
+      await swal({
+        title:"you are logined",
+        icon:"info"
+      })
+      window.location.href='/'
+    }
+},[])
 
   return (
     <div className="login-container">
