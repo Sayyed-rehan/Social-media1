@@ -1,14 +1,13 @@
-import React, { useState , useContext} from 'react'
+import React, { useState } from 'react'
 import { Avatar,  Card, CardActions, CardContent, CardHeader, CardMedia, Divider, IconButton, Typography } from '@mui/material'
 import { currentUser } from '../../utils/currentUser'
 import axios from 'axios'
 import UpdateModal from '../../Modals/UpdateModal'
 import "./PostCardItems.css"
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
-import { useSelector } from "react-redux";
 import { useEffect } from 'react'
 import bin from "./../../images/bin.png"
-import disablebin from "./../../images/disablebin.png"
+
 
 
 
@@ -16,7 +15,8 @@ import disablebin from "./../../images/disablebin.png"
 const PostCardItems = (props) => {
   const [liked, setliked] = useState(false)
   const [UserID, setUserID] = useState("")
-  const mySelUser = useSelector((state) => state.users.selUser);
+  const [likedCount, setlikedCount] = useState(0)
+
 
   
 
@@ -30,34 +30,59 @@ const PostCardItems = (props) => {
     })
     .then((willDelete) => {
       if (willDelete) {
-        const res =  axios.delete(`http://localhost:5000/deletePostById/?_id=${x}`)
+        const res =   axios.delete(`http://localhost:5000/deletePostById/?_id=${x}`)
         console.log(res.data);
-
-        swal("Poof! Your post has been deleted!", {
+         swal("Poof! Your post has been deleted!", {
           icon: "success",
         });
       } else {
-        swal("Your imaginary file is safe!");
+         swal("Your Post  is safe!");
       }
     });
     location.reload()
   }
 
-console.log(props.createdAt);
+// console.log(props.createdAt);
+
+const createdAted = new Date(props.createdAt).toLocaleString(
+  'en-US',
+  {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+  })
+
+  // console.log(createdAted);
+
+ 
 
 
   const fetchDetailsByID = async()=>{
     const res = await axios.get(`http://localhost:5000/getUserByID?_id=${props.postedBy}`)
-    console.log('id details',res.data.data._id);
+    // console.log('id details',res.data.data._id);
     setUserID(res.data.data.name)
   }
 
   const handlediableBin =async()=>{
     await swal({
-      title: "Cannot delete others post",
+      title: "You don't have access to this post",
       icon: "error",
       button: "ok",
     });
+  }
+
+  const handleLiked =()=>{
+    setlikedCount(likedCount+1)
+    setliked(true)
+  }
+
+  const handleUnLiked =()=>{
+    setlikedCount(likedCount-1)
+    setliked(false)
   }
   
 useEffect(()=>{fetchDetailsByID()},[])
@@ -72,20 +97,21 @@ useEffect(()=>{fetchDetailsByID()},[])
             <CardHeader 
             avatar={<Avatar>{UserID.split("",1)}</Avatar>}
             title={props.heading}
-             subheader="September 14, 2016"
+             subheader={createdAted}
             />
-            <CardMedia image={props.img}  component="img"  sx={{ height: 270,  }}/>
+            <CardMedia image={props.img}  component="img"  sx={{ height: "300px", width:"100%", objectFit:"cover"  }}/>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">{props.desc}</Typography>
             </CardContent>
-            <Divider/>
+            {/* <Divider/> */}
 
             <CardActions sx={{display:"flex", justifyContent:"space-evenly", cursor:"pointer"}}>
-            <ThumbUpAltOutlinedIcon fontSize='large'  onClick={liked?()=>setliked(false):()=>setliked(true)} color={liked?'success':'inherit'}/>
+            <ThumbUpAltOutlinedIcon fontSize='large'  onClick={liked?handleUnLiked:handleLiked} color={liked?'success':'inherit'}  />
+            
 
             {currentUser._id==props.postedBy? 
-            <img src={bin} alt='delete' width='35px' onClick={()=>handleDelete(props._id)}  />
-            :<img src={disablebin} width='35px' onClick={handlediableBin}/>}
+            <img src={bin} alt='delete' width='30px' onClick={()=>handleDelete(props._id)}  />
+            :<img src={bin} width='30px' onClick={handlediableBin}/>}
             <UpdateModal  
             heading={props.heading}
              desc={props.desc}

@@ -5,7 +5,7 @@ import "./Feed.css";
 import { useEffect } from "react";
 import PostCardItems from "../PostCardItems/PostCardItems";
 import AddModal from "../../Modals/addModal";
-import ConnetModal from "../../Modals/ConnetModal"
+
 
 
 const Feed = () => {
@@ -16,14 +16,14 @@ const Feed = () => {
 
   const fetchPost = async()=>{
     const res = await axios.get("http://localhost:5000/allPost")
-    setdata(res.data.data)
-    
+    console.log(res.data.data);
+    setdata(res.data.data)   
   }
   
 
 const fetchSerachPost = async()=>{
   const res = await axios.get(`http://localhost:5000/byheading?heading=${search}`)
-  console.log(res.data.data);
+  // console.log(res.data.data);
   setdata(res.data.data)
 }
 
@@ -46,12 +46,12 @@ useEffect(() => {
     <div className="feed-container">
       <Box className="feed-container1" >
         <Box className="feed1">
-          <TextField variant="outlined" label="Serach posts here" fullWidth
-          sx={{width:"350px"}}  value={search} onChange={(e)=>setsearch(e.target.value)}  />
+          <TextField variant="outlined" label="Serach posts here" fullWidth 
+          sx={{width:"350px", bgcolor:"white", borderRadius:"10px"}}  value={search} onChange={(e)=>setsearch(e.target.value)}  />
             <Box>
         <AddModal/>
             </Box>
-        <ConnetModal/>
+        {/* <ConnetModal/> */}
         </Box>
 
           <Divider color='white'/>

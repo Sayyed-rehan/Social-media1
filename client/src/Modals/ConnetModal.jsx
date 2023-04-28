@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Box, Button, Divider, IconButton, Modal, Stack, Typography } from "@mui/material";
-import location from "./../images/location.png";
 import { currentUser } from "../utils/currentUser";
 import axios from "axios";
-import person from "./../images/person1.png"
 import email from "./../images/email.png"
-import call from "./../images/call.png"
 import addfriend from "./../images/addfriend.png"
 
 
@@ -36,7 +33,6 @@ const ConnetModal = () => {
             <Typography variant='h5' fontWeight='bold' sx={{display:"flex", justifyContent:"center"}}>Connet friends from your City</Typography>
             <Divider/>
         {UsercityData && UsercityData.length>0  ? 
-
         (UsercityData.filter(a=>a._id!=currentUser._id).map((x,i)=>(
 
             <Box sx={{pt:"20px"}} key={x._id}>

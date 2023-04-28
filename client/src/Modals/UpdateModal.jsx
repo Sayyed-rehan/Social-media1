@@ -4,7 +4,6 @@ import axios from 'axios'
 import swal from 'sweetalert'
 import edit from "./../images/edit.png"
 import { currentUser } from "../utils/currentUser";
-import disableedit from "./../images/disableedit.jpg"
 
 const UpdateModal = (props) => {
   const [isDrawerOpen, setisDrawerOpen] = useState(false);
@@ -52,7 +51,7 @@ const UpdateModal = (props) => {
 
     const hanldeDisableEdit=async()=>{
       await swal({
-        title: "Cannot edit this post",
+        title: "You don't have access to this post",
         icon: "error",
         button: "ok",
       });
@@ -64,10 +63,7 @@ const UpdateModal = (props) => {
     <>
       <IconButton size="large" edge="start" color="black"
         onClick={currentUser._id==props.postedBy? () => setisDrawerOpen(true):() => hanldeDisableEdit()}>
-
-      <img src={edit} width='35px'/>
-       {/* {currentUser._id==props.postedBy? 
-       :<img src={disableedit} width='55px' onClick={hanldeDisableEdit}/>} */}
+      <img src={edit} width='30px'/>
       </IconButton>
       <Modal open={isDrawerOpen} onClose={() => setisDrawerOpen(false)} aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">

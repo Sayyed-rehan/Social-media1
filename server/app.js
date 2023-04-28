@@ -71,7 +71,7 @@ app.post("/login", async(req,res)=>{
 
 //allPost
 app.get("/allPost", async(req,res)=>{
-    const data = await  Post.find()
+    const data = await  Post.find().sort({createdAt:-1});
     res.json({
         success:true,
         mess:"all posts", 

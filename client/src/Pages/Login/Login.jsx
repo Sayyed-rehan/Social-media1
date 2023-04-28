@@ -27,7 +27,7 @@ const Login = () => {
         
         if(responce.data.success){
             await swal({
-                title: "Logined",
+                title: "Login Successfull",
                 text: "You are ready to GO",
                 icon: "success",
                 button: "ok",
@@ -44,6 +44,10 @@ const Login = () => {
         }
     }
 
+    const handleRegister =()=>{
+      nav("/sigin")
+    }
+
   return (
     <div className="login-container">
       <Box className='l1'>
@@ -52,9 +56,9 @@ const Login = () => {
           <TextField variant="outlined" label='Email' name="email" value={user.email} onChange={handleInput} type='email'/>
           <TextField variant="outlined" label='Password' name="password" value={user.password} onChange={handleInput} type='password'/>
         </Stack>
-        <Box sx={{pt:"30px"}}>
+        <Box sx={{pt:"30px", display:"flex", gap:"20px"}}>
         <Button onClick={handleLogin} variant='contained' color='success' disabled={disable}>Login</Button>
-        {/* <Button variant='contained' >Register</Button> */}
+        <Button variant='contained' onClick={handleRegister}>Register</Button>
         </Box>
       </Box>
     </div>

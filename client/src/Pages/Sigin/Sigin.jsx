@@ -26,14 +26,23 @@ const Sigin = () => {
             password:user.password
         })
         console.log(responce.data);
-        await swal({
+        if(responce.data.success){
+          await swal({
             title: "Sigin Done",
             text: "You are ready to GO",
             icon: "success",
             button: "ok",
           });
-        setuser({name:"", email:"", phone:"", password:""})
-        Nav("/login")
+          Nav("/login")
+        }else{
+          await swal({
+            title:"Some Fields are empty",
+            text:responce.data.mess,
+            icons:"info"
+          })
+        }
+        
+          setuser({name:"", email:"", phone:"", password:""})
     }
 
   return (

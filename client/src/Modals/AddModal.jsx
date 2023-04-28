@@ -1,20 +1,15 @@
 import React, { useState } from "react";
-import { Box, Button, IconButton, Modal, Stack, TextField, Typography,} from "@mui/material";
+import {Box, Button, IconButton, Modal, Stack, TextField, Typography,} from "@mui/material";
 import axios from "axios";
 import swal from "sweetalert";
 import { currentUser } from "../utils/currentUser";
-import {useDispatch, useSelector}from "react-redux"
-import {setSelectedUser} from "./../redux/counterSlice"
-import addPosts from "./../images/addPosts.png"
-
+import addPosts from "./../images/addPosts.png";
 
 const AddModal = () => {
   const [isModalOpen, setisModalOpen] = useState(false);
-  const [UserID, setUserID] = useState("")
-  const dispatch = useDispatch();
+  const [UserID, setUserID] = useState("");
 
 
- 
   const [form, setform] = useState({
     heading: "",
     desc: "",
@@ -42,28 +37,26 @@ const AddModal = () => {
       heading: form.heading,
       desc: form.desc,
       img: form.Images,
-      postedBy:(currentUser._id)
+      postedBy: currentUser._id,
     });
-    
-    const responce = await axios.get(`http://localhost:5000/getUserByID?_id=${currentUser._id}`)
-    console.log('id details',responce.data.data.name);
-    setUserID(responce.data.data.name)
-    dispatch(setSelectedUser(responce.data.data.name))
-    setisModalOpen(false)
 
+    const responce = await axios.get(
+      `http://localhost:5000/getUserByID?_id=${currentUser._id}`
+    );
+    console.log("id details", responce.data.data.name);
+    setUserID(responce.data.data.name);
+    dispatch(setSelectedUser(responce.data.data.name));
+    setisModalOpen(false);
 
-    swal({
-        title: "Post Added",
-                text: "You are ready to GO",
-                icon: "success"
-              })
-              setform({heading:"", desc:"", Images:""})
-              console.log(res.data.data);
-              location.reload()
+    await swal({
+      title: "Post Added",
+      text: "You are ready to GO",
+      icon: "success",
+    });
+    setform({ heading: "", desc: "", Images: "" });
+    console.log(res.data.data);
+    location.reload();
   };
-
-
-
 
   return (
     <>
@@ -72,10 +65,7 @@ const AddModal = () => {
         edge="start"
         onClick={() => setisModalOpen(true)}
       >
-        <img
-          src={addPosts}
-          width="32"
-        />
+        <img src={addPosts} width="32" />
       </IconButton>
 
       <Modal
@@ -87,7 +77,8 @@ const AddModal = () => {
         <Box sx={styles} boxShadow={12}>
           <Typography
             variant="h4"
-            sx={{ display: "flex", justifyContent: "center" }}>
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             Add post
           </Typography>
           <Stack spacing={4} sx={{ pt: 2, pb: 2 }}>

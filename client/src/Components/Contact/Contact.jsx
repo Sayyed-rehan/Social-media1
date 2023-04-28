@@ -4,10 +4,6 @@ import { Avatar, AvatarGroup, Box, Button, Dialog, DialogContent, DialogContentT
 import { useEffect } from "react";
 import "./Contact.css"
 import trend from "./../../images/trend.png"
-import person from "./../../images/person1.png"
-import email from "./../../images/email.png"
-import call from "./../../images/call.png"
-import location from "./../../images/location.png"
 import {currentUser} from "./../../utils/currentUser"
 import ConnetModal from "../../Modals/ConnetModal";
 const API = import.meta.env.VITE_SOME_KEY
@@ -48,12 +44,7 @@ const Contact = () => {
     setUsercityData(res.data.data)
   }
 
-  // const fetchUserByID = async(x)=>{
-  //   setDailogOpen(true)
-  //   const res = await axios.get(`http://localhost:5000/getUserByID?_id=${x}`)
-  //   console.log("fetchUserByID",res.data.data);
-  //   setUserById(res.data.data)
-  // }
+
 
 
 
@@ -68,7 +59,7 @@ const Contact = () => {
   return (
     <div>
     <Box className='contact-container'>
-    <Box className="c1" boxShadow={12}>
+    <Box className="c1" >
     <Typography variant="h5" fontWeight='bold' sx={{pb:"10px", pt:"10px"}}>Catch your favourite actions</Typography>
     <Divider variant='middle'/>
       <List>
@@ -93,7 +84,6 @@ const Contact = () => {
       </List>
     </Box>
     <Box className="c2">
-    {/* <ConnetModal/> */}
 
     </Box>
     </Box>
