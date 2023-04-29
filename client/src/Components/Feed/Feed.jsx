@@ -8,6 +8,7 @@ import AddModal from "../../Modals/addModal";
 
 
 
+
 const Feed = () => {
 
   
@@ -50,7 +51,7 @@ useEffect(() => {
           <TextField variant="outlined" label="Search posts here..." fullWidth 
           sx={{width:"350px", bgcolor:"white", borderRadius:"10px"}}  value={search} onChange={(e)=>setsearch(e.target.value)}  />
             <Box>
-        <AddModal/>
+            <AddModal/>
             </Box>
         </Box>
 
