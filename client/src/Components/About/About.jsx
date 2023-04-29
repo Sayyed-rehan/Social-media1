@@ -16,7 +16,6 @@ const About = () => {
 
   
 
-//    import axios from "axios";
 async function loadData() {
     // let city = "ahmednagar"
     var APIKEY = "e9e36cf5a2bbf404c59aeeb1f4b710e0"
@@ -36,7 +35,7 @@ async function loadData() {
 
   loadData();
 
-  // console.log(description);
+  // logout
   const handleLogout=async()=>{
     await swal({
       title: "Logout Successfully",
@@ -46,6 +45,8 @@ async function loadData() {
     window.location.href = "/login";
   }
 
+
+  //get data by city for recommedation
   const [UsercityData,setUsercityData] = useState([])
   const fetchDataByCity = async () => {
     const res = await axios.get(`http://localhost:5000/getUserbyCity?city=${currentUser.city}`);
@@ -55,7 +56,7 @@ async function loadData() {
 
   const handleAddUser=async()=>{
     await swal({
-      title: "Friend added Successfully",
+      title: "Added to Friend list Successfully",
       icon: "success",
     });
   }

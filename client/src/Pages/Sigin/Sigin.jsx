@@ -17,6 +17,7 @@ const Sigin = () => {
         setuser({...user,[e.target.name]:e.target.value})
     }
 
+    //to sigin register
     const handleSigin=async()=>{
 
         const responce = await axios.post("http://localhost:5000/sigin",{

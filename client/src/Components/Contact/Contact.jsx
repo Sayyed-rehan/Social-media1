@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Avatar, AvatarGroup, Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, SpeedDial, Stack, Tooltip, Typography,} from "@mui/material";
+import { Avatar, AvatarGroup, Box,Divider, IconButton, Link, List, ListItem, ListItemIcon, ListItemText, SpeedDial, Stack, Tooltip, Typography,} from "@mui/material";
 import { useEffect } from "react";
 import "./Contact.css"
 import trend from "./../../images/trend.png"
 import {currentUser} from "./../../utils/currentUser"
-import ConnetModal from "../../Modals/ConnetModal";
+// import ConnetModal from "../../Modals/ConnetModal";
 const API = import.meta.env.VITE_SOME_KEY
 
 
@@ -21,12 +21,9 @@ const API = import.meta.env.VITE_SOME_KEY
 
 const Contact = () => {
   const [soccerData, setsoccerData] = useState([]);
-  const [DailogOpen, setDailogOpen] = useState(false)
-  const [UsercityData, setUsercityData] = useState([])
-  const [UserById, setUserById] = useState([])
 
-// console.log("api",import.meta.env.VITE_SOME_KEY);
 
+  //get scoocer data
   const getData = async () => {
     const res = await axios.get(
       "https://free-football-soccer-videos.p.rapidapi.com/",
@@ -38,11 +35,7 @@ const Contact = () => {
     setsoccerData(res.data);
   };
 
-  const fetchDataByCity = async()=>{
-    const res = await axios.get(`http://localhost:5000/getUserbyCity?city=${currentUser.city}`)
-    console.log(res.data.data);
-    setUsercityData(res.data.data)
-  }
+
 
 
 
@@ -50,7 +43,6 @@ const Contact = () => {
 
   useEffect(() => {
     getData();
-    // fetchDataByCity()
   }, []);
 
  

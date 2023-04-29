@@ -19,7 +19,7 @@ const PostCardItems = (props) => {
 
 
   
-
+// to delete the post
   const handleDelete =async(x)=>{
     await swal({
       title: "Are you sure?",
@@ -56,11 +56,10 @@ const createdAted = new Date(props.createdAt).toLocaleString(
     hour12: true,
   })
 
-  // console.log(createdAted);
 
  
 
-
+//get User data by ID
   const fetchDetailsByID = async()=>{
     const res = await axios.get(`http://localhost:5000/getUserByID?_id=${props.postedBy}`)
     // console.log('id details',res.data.data._id);
@@ -103,7 +102,7 @@ useEffect(()=>{fetchDetailsByID()},[])
             <CardContent>
                 <Typography variant="body2" color="text.secondary">{props.desc}</Typography>
             </CardContent>
-            {/* <Divider/> */}
+           
 
             <CardActions sx={{display:"flex", justifyContent:"space-evenly", cursor:"pointer"}}>
             <ThumbUpAltOutlinedIcon fontSize='large'  onClick={liked?handleUnLiked:handleLiked} color={liked?'success':'inherit'}  />

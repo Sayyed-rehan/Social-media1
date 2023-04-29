@@ -14,13 +14,14 @@ const Feed = () => {
   const [data, setdata] = useState([])
   const [search, setsearch] = useState("")
 
+  //fetch all the post
   const fetchPost = async()=>{
     const res = await axios.get("http://localhost:5000/allPost")
-    console.log(res.data.data);
+    // console.log(res.data.data);
     setdata(res.data.data)   
   }
   
-
+//fetch post by headings
 const fetchSerachPost = async()=>{
   const res = await axios.get(`http://localhost:5000/byheading?heading=${search}`)
   // console.log(res.data.data);
@@ -51,7 +52,6 @@ useEffect(() => {
             <Box>
         <AddModal/>
             </Box>
-        {/* <ConnetModal/> */}
         </Box>
 
           <Divider color='white'/>
