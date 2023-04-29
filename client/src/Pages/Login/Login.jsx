@@ -7,8 +7,8 @@ import {useNavigate}from 'react-router-dom'
 import {currentUser} from "./../../utils/currentUser"
 
 
-const navigate = useNavigate()
 const Login = () => {
+  const navigate = useNavigate()
     const [disable, setdisable] = useState(true)
 
     const [user, setuser] = useState({
