@@ -3,6 +3,6 @@ const mongoose = require('mongoose')
 
 mongoose.set('strictQuery', false);
 
-mongoose.connect(process.env.MONGODB_URL,{  useNewUrlParser: true,})
+mongoose.connect(process.env.MONGODB_URL,{  useNewUrlParser: true, useUnifiedTopology: true})
 .then((res)=>console.log('mongodb connected'))
 .catch((err)=>console.log(err))
