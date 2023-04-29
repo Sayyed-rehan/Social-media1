@@ -49,7 +49,7 @@ const Login = () => {
 
   
     const handleRegister =()=>{
-      nav("/sigin")
+      window.location.href="/sigin"
     }
 
   useEffect(async()=>{
