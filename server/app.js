@@ -170,11 +170,13 @@ app.get("/getUserByID", async(req,res)=>{
 
 
 //route ends here
-app.use(express.static(path.join(___dirname, "..", 'client', 'dist')))
-
-app.get("*", (req,res)=>{
-    res.sendFile(path.join(___dirname, "..", 'client', 'dist', 'index.html'))
-})
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(___dirname, '..', 'client', 'dist')));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(___dirname, '..', 'client', 'dist', 'index.html'));
+    });
+  }
 
 
 app.listen(5000, console.log(`server started at ${PORT}`))
