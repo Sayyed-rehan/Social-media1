@@ -35,7 +35,7 @@ const Sigin = () => {
             icon: "success",
             button: "ok",
           });
-          Nav("/login")
+          window.location.href = "/login"
         }else{
           await swal({
             title:"Some Fields are empty",
