@@ -6,7 +6,7 @@ import { loginUser } from "../../utils/loginUser";
 import "./About.css"
 import adduser from "./../../images/addfriend.png"
 import location2 from "./../../images/location2.png"
-const WeatherKey = import.meta.env.VITE_WEATHER_KEY
+// const WeatherKey = import.meta.env.VITE_WEATHER_KEY
 
 
 const About = () => {
