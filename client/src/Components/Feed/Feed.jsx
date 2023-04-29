@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Feed.css";
 import { useEffect } from "react";
 import PostCardItems from "../PostCardItems/PostCardItems";
-import AddModal from "../../Modals/addModal";
+import AddModal from "./../../Modals/AddModal"
 
 
 
