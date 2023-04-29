@@ -8,7 +8,7 @@ import {currentUser} from "./../../utils/currentUser"
 
 
 const Login = () => {
-    const nav = useNavigate()
+    const navigate = useNavigate()
     const [disable, setdisable] = useState(true)
 
     const [user, setuser] = useState({
@@ -49,7 +49,7 @@ const Login = () => {
 
   
     const handleRegister =()=>{
-      window.location.href="/sigin"
+     navigate("/sigin")
     }
 
   useEffect(async()=>{
