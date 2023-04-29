@@ -16,24 +16,24 @@ const About = () => {
 
   
 
-async function loadData() {
-    // let city = "ahmednagar"
-    var APIKEY = "e9e36cf5a2bbf404c59aeeb1f4b710e0"
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city?currentUser.city:"Ahmednagar"}&appid=${APIKEY}`;
-    const response = await axios.get(url);
+// async function loadData() {
+//     // let city = "ahmednagar"
+//     var APIKEY = "e9e36cf5a2bbf404c59aeeb1f4b710e0"
+//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city?currentUser.city:"Ahmednagar"}&appid=${APIKEY}`;
+//     const response = await axios.get(url);
 
-    //fetching temp
-    const tempCel = Math.round(response.data.main.temp - 273.15);
-    setTemp(`${tempCel} °C`);
+//     //fetching temp
+//     const tempCel = Math.round(response.data.main.temp - 273.15);
+//     setTemp(`${tempCel} °C`);
 
-    //fetching humidity
-    setHumidity(`${response.data.main.humidity} %`);
+//     //fetching humidity
+//     setHumidity(`${response.data.main.humidity} %`);
 
-    //fetching description
-    setDescription(response.data.weather[0].description);
-  }
+//     //fetching description
+//     setDescription(response.data.weather[0].description);
+//   }
 
-  loadData();
+//   loadData();
 
   // logout
   const handleLogout=async()=>{
