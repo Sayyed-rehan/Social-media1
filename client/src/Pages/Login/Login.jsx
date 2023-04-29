@@ -22,7 +22,7 @@ const Login = () => {
 
     //to login User
     const handleLogin=async()=>{
-        const responce = await axios.post("http://localhost:5000/login",{
+        const responce = await axios.post("/login",{
             email:user.email,
             password:user.password
         })

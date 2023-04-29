@@ -25,7 +25,7 @@ const AddModal = () => {
 
     //to add post
   const handleAdd = async () => {
-    const res = await axios.post("http://localhost:5000/createPost", {
+    const res = await axios.post("/createPost", {
       heading: form.heading,
       desc: form.desc,
       img: form.Images,
@@ -33,7 +33,7 @@ const AddModal = () => {
     });
     //get User data by ID
     const responce = await axios.get(
-      `http://localhost:5000/getUserByID?_id=${currentUser._id}`
+      `/getUserByID?_id=${currentUser._id}`
     );
     console.log("id details", responce.data.data.name);
     setUserID(responce.data.data.name);

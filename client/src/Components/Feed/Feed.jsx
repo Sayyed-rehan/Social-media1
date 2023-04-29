@@ -17,14 +17,14 @@ const Feed = () => {
 
   //fetch all the post
   const fetchPost = async()=>{
-    const res = await axios.get("http://localhost:5000/allPost")
+    const res = await axios.get("/allPost")
     // console.log(res.data.data);
     setdata(res.data.data)   
   }
   
 //fetch post by headings
 const fetchSerachPost = async()=>{
-  const res = await axios.get(`http://localhost:5000/byheading?heading=${search}`)
+  const res = await axios.get(`/byheading?heading=${search}`)
   // console.log(res.data.data);
   setdata(res.data.data)
 }

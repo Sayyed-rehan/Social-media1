@@ -50,7 +50,7 @@ const About = () => {
   //get data by city for recommedation
   const [UsercityData,setUsercityData] = useState([])
   const fetchDataByCity = async () => {
-    const res = await axios.get(`http://localhost:5000/getUserbyCity?city=${currentUser.city}`);
+    const res = await axios.get(`/getUserbyCity?city=${currentUser.city}`);
     // console.log("from coonect",res.data.data);
     setUsercityData(res.data.data);
   };

@@ -20,7 +20,7 @@ const Sigin = () => {
     //to sigin register
     const handleSigin=async()=>{
 
-        const responce = await axios.post("http://localhost:5000/sigin",{
+        const responce = await axios.post("/sigin",{
             name:user.name,
             phone:user.phone,
             email:user.email,

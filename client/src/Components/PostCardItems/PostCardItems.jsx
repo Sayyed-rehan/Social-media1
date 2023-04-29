@@ -30,7 +30,7 @@ const PostCardItems = (props) => {
     })
     .then((willDelete) => {
       if (willDelete) {
-        const res =   axios.delete(`http://localhost:5000/deletePostById/?_id=${x}`)
+        const res =   axios.delete(`/deletePostById/?_id=${x}`)
         console.log(res.data);
          swal("Poof! Your post has been deleted!", {
           icon: "success",
@@ -61,7 +61,7 @@ const createdAted = new Date(props.createdAt).toLocaleString(
 
 //get User data by ID
   const fetchDetailsByID = async()=>{
-    const res = await axios.get(`http://localhost:5000/getUserByID?_id=${props.postedBy}`)
+    const res = await axios.get(`/getUserByID?_id=${props.postedBy}`)
     // console.log('id details',res.data.data._id);
     setUserID(res.data.data.name)
   }

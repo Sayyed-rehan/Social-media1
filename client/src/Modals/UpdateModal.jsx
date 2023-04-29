@@ -31,7 +31,7 @@ const UpdateModal = (props) => {
       })
       .then((willDelete) => {
         if (willDelete) {
-          const res = axios.patch(`http://localhost:5000/updatePost?_id=${x}`,{
+          const res = axios.patch(`/updatePost?_id=${x}`,{
             heading:inputs.heading,
             desc:inputs.desc,
             img:inputs.image
