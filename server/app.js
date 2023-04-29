@@ -3,6 +3,10 @@ const dotenv= require('dotenv');
 const express = require('express')
 const app  = express()
 dotenv.config();
+const path =require('path')
+const ___dirname = path.resolve();
+
+
 require("./db/connect")
 const bycrypt = require("bcryptjs")
 const User = require("./models/userSchema")
@@ -162,6 +166,14 @@ app.get("/getUserByID", async(req,res)=>{
         mess:"User by Id",
         data:data
     })
+})
+
+
+//route ends here
+app.use(express.static(path.join(___dirname, "..", 'client', 'dist')))
+
+app.get("*", (req,res)=>{
+    res.sendFile(path.join(___dirname, "..", 'client', 'dist', 'index.html'))
 })
 
 

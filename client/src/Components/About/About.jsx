@@ -6,6 +6,8 @@ import { loginUser } from "../../utils/loginUser";
 import "./About.css"
 import adduser from "./../../images/addfriend.png"
 import location2 from "./../../images/location2.png"
+const WeatherKey = import.meta.env.VITE_WEATHER_KEY
+
 
 const About = () => {
     const [city, setCity] = useState('Ahmednagar');
@@ -18,8 +20,7 @@ const About = () => {
 
 // async function loadData() {
 //     // let city = "ahmednagar"
-//     var APIKEY = "e9e36cf5a2bbf404c59aeeb1f4b710e0"
-//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city?currentUser.city:"Ahmednagar"}&appid=${APIKEY}`;
+//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${currentUser.city?currentUser.city:"Ahmednagar"}&appid=${WeatherKey}`;
 //     const response = await axios.get(url);
 
 //     //fetching temp
