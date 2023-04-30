@@ -63,9 +63,9 @@ const AddModal = () => {
             Add post
           </Typography>
           <Stack spacing={4} sx={{ pt: 2, pb: 2 }}>
-            <TextField variant="outlined" label="heading" name="heading" value={form.heading} onChange={handleInput}/>
-            <TextField variant="outlined" label="desc" name="desc" value={form.desc} onChange={handleInput} multiline/>
-            <TextField variant="outlined" label="Images Url" name="Images" value={form.Images} onChange={handleInput} multiline/>
+            <TextField variant="outlined" label="Heading" name="heading" value={form.heading} onChange={handleInput}/>
+            <TextField variant="outlined" label="Caption" name="desc" value={form.desc} onChange={handleInput} multiline/>
+            <TextField variant="outlined" label="Image Url" name="Images" value={form.Images} onChange={handleInput} multiline/>
           </Stack>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Button onClick={handleAdd} variant="contained">
